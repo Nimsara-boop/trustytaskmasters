@@ -1,5 +1,5 @@
 
-import { ArrowRight, Shield, Star, Tools } from "lucide-react";
+import { ArrowRight, Shield, Star, Wrench } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -31,7 +31,7 @@ const Hero = () => {
               description: "All repair workers are thoroughly vetted and certified",
             },
             {
-              icon: Tools,
+              icon: Wrench,
               title: "Fully Equipped",
               description: "Workers arrive with all necessary tools and equipment",
             },
