@@ -51,13 +51,13 @@ const Services = () => {
             <Card key={index} className="hover:shadow-lg transition-shadow bg-white/10 backdrop-blur-sm border-white/20">
               <CardHeader>
                 <service.icon className="w-8 h-8 text-secondary mb-2" />
-                <CardTitle className="text-white">{service.title}</CardTitle>
-                <CardDescription className="text-slate-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">{service.description}</CardDescription>
+                <CardTitle className="text-slate-800">{service.title}</CardTitle>
+                <CardDescription className="text-slate-600">{service.description}</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
                   {service.specifics.map((specific, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-slate-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+                    <li key={idx} className="flex items-center text-sm text-slate-700">
                       <span className="w-1.5 h-1.5 bg-secondary rounded-full mr-2" />
                       {specific}
                     </li>
