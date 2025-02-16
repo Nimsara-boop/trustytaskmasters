@@ -14,7 +14,7 @@ const Hero = () => {
             <br />
             <span className="text-secondary">Guaranteed</span>
           </h1>
-          <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mb-8">
+          <p className="text-lg md:text-xl text-slate-100 max-w-2xl mx-auto mb-8 drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
             Connect with verified repair experts who arrive fully equipped and ready to solve your problems.
           </p>
           <button className="px-8 py-4 bg-accent text-white rounded-lg font-medium hover:bg-accent/90 transition-colors inline-flex items-center gap-2 shadow-lg hover:shadow-xl">
@@ -48,7 +48,7 @@ const Hero = () => {
             >
               <feature.icon className="w-12 h-12 text-secondary mb-4" />
               <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
-              <p className="text-slate-200">{feature.description}</p>
+              <p className="text-slate-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">{feature.description}</p>
             </div>
           ))}
         </div>

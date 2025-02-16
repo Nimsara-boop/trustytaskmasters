@@ -55,25 +55,25 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 bg-slate-900/5 backdrop-blur-sm">
+    <section id="how-it-works" className="py-20 bg-transparent backdrop-blur-sm">
       <div className="container max-w-6xl">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">How It Works</h2>
-          <p className="text-slate-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">How It Works</h2>
+          <p className="text-slate-100 max-w-2xl mx-auto drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
             A simple, transparent process to get your repairs done by verified professionals
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {steps.map((step, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
+            <Card key={index} className="hover:shadow-lg transition-shadow bg-white/10 backdrop-blur-sm border-white/20">
               <CardHeader>
                 <step.icon className="w-8 h-8 text-secondary mb-2" />
-                <CardTitle className="text-lg">{step.title}</CardTitle>
-                <CardDescription>{step.description}</CardDescription>
+                <CardTitle className="text-white text-lg">{step.title}</CardTitle>
+                <CardDescription className="text-slate-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">{step.description}</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-slate-600">{step.details}</p>
+                <p className="text-sm text-slate-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">{step.details}</p>
               </CardContent>
             </Card>
           ))}
@@ -81,17 +81,17 @@ const HowItWorks = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
           {verificationSteps.map((section, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
+            <Card key={index} className="hover:shadow-lg transition-shadow bg-white/10 backdrop-blur-sm border-white/20">
               <CardHeader>
                 <section.icon className="w-8 h-8 text-secondary mb-2" />
-                <CardTitle>{section.title}</CardTitle>
+                <CardTitle className="text-white">{section.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
                   {section.points.map((point, idx) => (
                     <li key={idx} className="flex items-start">
                       <span className="w-2 h-2 mt-2 mr-2 bg-secondary rounded-full" />
-                      <span className="text-slate-600">{point}</span>
+                      <span className="text-slate-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">{point}</span>
                     </li>
                   ))}
                 </ul>
