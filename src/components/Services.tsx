@@ -9,26 +9,31 @@ const Services = () => {
       icon: Wrench,
       title: "General Repairs",
       description: "Plumbing, electrical, and general maintenance for your home",
+      specifics: ["Leaky faucets", "Door repairs", "Window maintenance", "Cabinet fixes"]
     },
     {
       icon: Smartphone,
       title: "Electronics",
       description: "Phone, computer, and other electronic device repairs",
+      specifics: ["Screen replacement", "Battery issues", "Software problems", "Hardware upgrades"]
     },
     {
       icon: Home,
       title: "Appliances",
       description: "Major home appliance repairs and maintenance",
+      specifics: ["Refrigerator repairs", "Washing machine fixes", "Dishwasher maintenance", "Dryer services"]
     },
     {
       icon: Thermometer,
       title: "HVAC",
       description: "Air conditioning, heating, and ventilation services",
+      specifics: ["AC repairs", "Heating system fixes", "Duct cleaning", "Thermostat installation"]
     },
     {
       icon: Zap,
       title: "Electrical",
       description: "Full electrical services from repairs to installations",
+      specifics: ["Wiring repairs", "Circuit breaker fixes", "Light installation", "Safety inspections"]
     },
   ];
 
@@ -50,6 +55,16 @@ const Services = () => {
                 <CardTitle>{service.title}</CardTitle>
                 <CardDescription>{service.description}</CardDescription>
               </CardHeader>
+              <CardContent>
+                <ul className="space-y-2">
+                  {service.specifics.map((specific, idx) => (
+                    <li key={idx} className="flex items-center text-sm text-slate-600">
+                      <span className="w-1.5 h-1.5 bg-secondary rounded-full mr-2" />
+                      {specific}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
             </Card>
           ))}
         </div>
