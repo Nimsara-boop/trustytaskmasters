@@ -1,4 +1,3 @@
-
 import { Share2, Star, FileCheck, MapPin, Bell, Shield } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -56,7 +55,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 bg-slate-50">
+    <section id="how-it-works" className="py-20 bg-slate-900/5 backdrop-blur-sm">
       <div className="container max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">How It Works</h2>

@@ -4,19 +4,6 @@ import { ArrowRight, Shield, Star, Wrench } from "lucide-react";
 const Hero = () => {
   return (
     <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-16">
-      {/* Background image with overlay */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center animate-slow-pan"
-          style={{
-            backgroundImage: "url('/photo-1519389950473-47ba0277781c')",
-            animation: "pan 20s ease-in-out infinite",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-800/80 to-slate-900/80" />
-      </div>
-
-      {/* Content */}
       <div className="container max-w-6xl animate-fadeIn relative z-10">
         <div className="text-center mb-12">
           <span className="px-4 py-2 rounded-full bg-secondary/20 text-secondary text-sm font-medium inline-block mb-4 backdrop-blur-sm">
