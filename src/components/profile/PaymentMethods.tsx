@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CreditCard } from "lucide-react";
+import { CreditCard, Plus } from "lucide-react";
 
 const PaymentMethods = () => {
   return (
@@ -14,7 +14,7 @@ const PaymentMethods = () => {
       </CardHeader>
       <CardContent>
         <div className="space-y-4 mb-6">
-          <div className="p-4 border rounded-lg flex justify-between items-center">
+          <div className="p-4 border rounded-lg flex justify-between items-center bg-white/80 backdrop-blur-sm">
             <div className="flex items-center">
               <CreditCard className="w-8 h-8 text-slate-700 mr-4" />
               <div>
@@ -27,7 +27,7 @@ const PaymentMethods = () => {
             </span>
           </div>
           
-          <div className="p-4 border rounded-lg flex justify-between items-center">
+          <div className="p-4 border rounded-lg flex justify-between items-center bg-white/80 backdrop-blur-sm">
             <div className="flex items-center">
               <CreditCard className="w-8 h-8 text-slate-700 mr-4" />
               <div>
