@@ -70,22 +70,22 @@ const Navbar = () => {
 
 const NavLinks = ({ mobile }: { mobile?: boolean }) => {
   const links = [
-    { name: "Services", href: "#services" },
-    { name: "How it Works", href: "#how-it-works" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Services", href: "/services" },
+    { name: "How it Works", href: "/how-it-works" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
     <div className={mobile ? "space-y-4" : "flex space-x-8"}>
       {links.map((link) => (
-        <a
+        <Link
           key={link.name}
-          href={link.href}
+          to={link.href}
           className="text-slate-600 hover:text-primary transition-colors block"
         >
           {link.name}
-        </a>
+        </Link>
       ))}
     </div>
   );
