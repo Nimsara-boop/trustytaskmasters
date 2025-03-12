@@ -1,13 +1,8 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Wrench, Zap, Smartphone, Home, Thermometer } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Services = () => {
-  const [selectedService, setSelectedService] = useState<number | null>(null);
   const navigate = useNavigate();
   
   const services = [
@@ -48,23 +43,16 @@ const Services = () => {
     },
   ];
 
-  const handleServiceSelect = (index: number) => {
-    setSelectedService(index);
-  };
-
-  const handleViewTasks = () => {
-    if (selectedService !== null) {
-      const service = services[selectedService];
-      navigate('/service-tasks', { 
-        state: { 
-          service: {
-            ...service,
-            icon: service.icon // Make sure the icon is passed correctly
-          },
-          tasks: service.specifics 
-        } 
-      });
-    }
+  const handleCardClick = (service: any, index: number) => {
+    navigate('/service-tasks', { 
+      state: { 
+        service: {
+          ...service,
+          icon: service.icon
+        },
+        tasks: service.specifics 
+      } 
+    });
   };
 
   return (
@@ -77,12 +65,12 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
           {services.map((service, index) => (
             <Card 
               key={index} 
-              className={`hover:shadow-lg transition-shadow bg-white/10 backdrop-blur-sm border-white/20 cursor-pointer ${selectedService === index ? 'ring-2 ring-secondary' : ''}`}
-              onClick={() => handleServiceSelect(index)}
+              className="hover:shadow-lg transition-shadow bg-white/10 backdrop-blur-sm border-white/20 cursor-pointer hover:scale-105 transition-transform"
+              onClick={() => handleCardClick(service, index)}
             >
               <CardHeader className="p-4">
                 <service.icon className="w-8 h-8 text-secondary mb-2" />
@@ -94,16 +82,6 @@ const Services = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        <div className="text-center">
-          <Button 
-            onClick={handleViewTasks} 
-            className="px-8 py-6 text-lg bg-secondary hover:bg-secondary/90"
-            disabled={selectedService === null}
-          >
-            View Tasks
-          </Button>
         </div>
       </div>
     </section>
