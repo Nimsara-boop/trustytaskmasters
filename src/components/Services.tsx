@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Wrench, Zap, Smartphone, Home, Thermometer } from "lucide-react";
@@ -51,12 +52,16 @@ const Services = () => {
     setSelectedService(index);
   };
 
-  const handleRequestService = () => {
+  const handleViewTasks = () => {
     if (selectedService !== null) {
+      const service = services[selectedService];
       navigate('/service-tasks', { 
         state: { 
-          service: services[selectedService],
-          tasks: services[selectedService].specifics 
+          service: {
+            ...service,
+            icon: service.icon // Make sure the icon is passed correctly
+          },
+          tasks: service.specifics 
         } 
       });
     }
@@ -93,7 +98,7 @@ const Services = () => {
 
         <div className="text-center">
           <Button 
-            onClick={handleRequestService} 
+            onClick={handleViewTasks} 
             className="px-8 py-6 text-lg bg-secondary hover:bg-secondary/90"
             disabled={selectedService === null}
           >
