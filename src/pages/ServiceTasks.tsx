@@ -3,12 +3,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
-import { Wrench, Zap, Smartphone, Home, Thermometer } from "lucide-react";
+import { Wrench, Zap, Smartphone, Home, Thermometer, Plus } from "lucide-react";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
 
 const ServiceTasks = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { service, tasks } = location.state || {};
+  const [selectedTask, setSelectedTask] = useState<string | null>(null);
+  const [otherTask, setOtherTask] = useState("");
+  const [showOtherInput, setShowOtherInput] = useState(false);
 
   if (!service) {
     navigate('/services');
@@ -30,8 +35,27 @@ const ServiceTasks = () => {
   const IconComponent = getIconComponent(service.iconName);
 
   const handleRequestService = () => {
-    navigate('/request', { state: { service } });
+    // Pass the selected task or the custom "other" task to the request page
+    const taskToRequest = selectedTask === "other" ? otherTask : selectedTask;
+    navigate('/request', { 
+      state: { 
+        service, 
+        selectedTask: taskToRequest 
+      } 
+    });
   };
+
+  const handleTaskClick = (task: string) => {
+    if (task === "other") {
+      setShowOtherInput(true);
+    } else {
+      setShowOtherInput(false);
+    }
+    setSelectedTask(task);
+  };
+
+  // Combine regular tasks with the "Other" option
+  const allTasks = [...tasks, "Other (specify your repair need)"];
 
   return (
     <div className="min-h-screen relative">
@@ -58,19 +82,42 @@ const ServiceTasks = () => {
             <CardContent>
               <p className="text-slate-600 mb-6">{service.description}</p>
               <div className="space-y-4 mb-8">
-                {tasks.map((task: string, idx: number) => (
-                  <div key={idx} className="p-4 border rounded-lg bg-white/80 backdrop-blur-sm">
+                {allTasks.map((task: string, idx: number) => (
+                  <div 
+                    key={idx} 
+                    className={`p-4 border rounded-lg ${selectedTask === (idx === tasks.length ? "other" : task) 
+                      ? "bg-secondary/20 border-secondary" 
+                      : "bg-white/80 hover:bg-slate-100/80"} 
+                      backdrop-blur-sm cursor-pointer transition-colors`}
+                    onClick={() => handleTaskClick(idx === tasks.length ? "other" : task)}
+                  >
                     <div className="flex items-center">
-                      <span className="w-2 h-2 bg-secondary rounded-full mr-3" />
+                      <span className={`w-2 h-2 ${selectedTask === (idx === tasks.length ? "other" : task) 
+                        ? "bg-secondary" 
+                        : "bg-slate-400"} rounded-full mr-3`} />
                       <p className="text-slate-700">{task}</p>
+                      {idx === tasks.length && <Plus className="w-4 h-4 ml-2 text-slate-500" />}
                     </div>
                   </div>
                 ))}
               </div>
+              
+              {showOtherInput && (
+                <div className="mb-6">
+                  <Input
+                    placeholder="Please specify your repair need"
+                    value={otherTask}
+                    onChange={(e) => setOtherTask(e.target.value)}
+                    className="border-secondary"
+                  />
+                </div>
+              )}
+              
               <div className="flex justify-center">
                 <Button 
                   onClick={handleRequestService}
                   className="px-8 py-6 text-lg bg-secondary hover:bg-secondary/90"
+                  disabled={!selectedTask || (selectedTask === "other" && !otherTask)}
                 >
                   Request This Service
                 </Button>

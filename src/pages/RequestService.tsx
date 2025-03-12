@@ -7,17 +7,21 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calendar, Clock, MapPin, Wrench } from "lucide-react";
+import { Calendar, Clock, MapPin, Wrench, CheckCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const RequestService = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [serviceData, setServiceData] = useState<any>(null);
+  const [selectedTask, setSelectedTask] = useState<string | null>(null);
   
   useEffect(() => {
     if (location.state?.service) {
       setServiceData(location.state.service);
+      if (location.state.selectedTask) {
+        setSelectedTask(location.state.selectedTask);
+      }
     } else {
       navigate('/');
     }
@@ -33,12 +37,30 @@ const RequestService = () => {
   });
 
   const onSubmit = (data: any) => {
-    console.log("Service requested:", { service: serviceData, ...data });
+    console.log("Service requested:", { 
+      service: serviceData, 
+      task: selectedTask,
+      ...data 
+    });
     // Here you would typically submit to your backend
     navigate("/confirmation");
   };
 
   if (!serviceData) return null;
+
+  // Get the correct icon component
+  const getIconComponent = (iconName: string) => {
+    switch (iconName) {
+      case "Wrench": return Wrench;
+      case "Zap": return Zap;
+      case "Smartphone": return Smartphone;
+      case "Home": return Home;
+      case "Thermometer": return Thermometer;
+      default: return Wrench; // Default fallback
+    }
+  };
+
+  const ServiceIcon = getIconComponent(serviceData.iconName);
 
   return (
     <div className="min-h-screen relative">
@@ -67,10 +89,16 @@ const RequestService = () => {
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <div className="flex items-center p-4 bg-slate-100 rounded-lg mb-6">
-                    <serviceData.icon className="w-10 h-10 text-secondary mr-4" />
+                    <ServiceIcon className="w-10 h-10 text-secondary mr-4" />
                     <div>
                       <h3 className="font-semibold text-lg">{serviceData.title}</h3>
                       <p className="text-slate-600">{serviceData.price}</p>
+                      {selectedTask && (
+                        <div className="flex items-center text-secondary mt-1">
+                          <CheckCircle className="w-4 h-4 mr-1" />
+                          <span className="text-sm">{selectedTask}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                   
