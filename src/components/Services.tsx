@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Wrench, Zap, Smartphone, Home, Thermometer } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -44,12 +45,17 @@ const Services = () => {
   ];
 
   const handleCardClick = (service: any, index: number) => {
+    // Pass the service title and name of the icon instead of the component itself
+    const serviceData = {
+      title: service.title,
+      description: service.description,
+      price: service.price,
+      iconName: service.icon.name || "Wrench" // Fallback to "Wrench" if name is undefined
+    };
+    
     navigate('/service-tasks', { 
       state: { 
-        service: {
-          ...service,
-          icon: service.icon
-        },
+        service: serviceData,
         tasks: service.specifics 
       } 
     });

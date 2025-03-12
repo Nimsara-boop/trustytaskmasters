@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
+import { Wrench, Zap, Smartphone, Home, Thermometer } from "lucide-react";
 
 const ServiceTasks = () => {
   const location = useLocation();
@@ -13,6 +14,20 @@ const ServiceTasks = () => {
     navigate('/services');
     return null;
   }
+
+  // Map icon names to actual icon components
+  const getIconComponent = (iconName: string) => {
+    switch (iconName) {
+      case "Wrench": return Wrench;
+      case "Zap": return Zap;
+      case "Smartphone": return Smartphone;
+      case "Home": return Home;
+      case "Thermometer": return Thermometer;
+      default: return Wrench; // Default fallback
+    }
+  };
+
+  const IconComponent = getIconComponent(service.iconName);
 
   const handleRequestService = () => {
     navigate('/request', { state: { service } });
@@ -36,7 +51,7 @@ const ServiceTasks = () => {
           <Card className="bg-white/95 backdrop-blur-sm shadow-lg">
             <CardHeader>
               <CardTitle className="text-2xl flex items-center gap-4">
-                <service.icon className="w-8 h-8 text-secondary" />
+                <IconComponent className="w-8 h-8 text-secondary" />
                 {service.title} Tasks
               </CardTitle>
             </CardHeader>
