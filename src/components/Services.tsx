@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Wrench, Zap, Smartphone, Home, Thermometer } from "lucide-react";
@@ -54,7 +53,12 @@ const Services = () => {
 
   const handleRequestService = () => {
     if (selectedService !== null) {
-      navigate('/request', { state: { service: services[selectedService] } });
+      navigate('/service-tasks', { 
+        state: { 
+          service: services[selectedService],
+          tasks: services[selectedService].specifics 
+        } 
+      });
     }
   };
 
@@ -93,25 +97,9 @@ const Services = () => {
             className="px-8 py-6 text-lg bg-secondary hover:bg-secondary/90"
             disabled={selectedService === null}
           >
-            Request Service
+            View Tasks
           </Button>
         </div>
-
-        {selectedService !== null && (
-          <div className="mt-8 bg-white/10 backdrop-blur-sm border-white/20 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-slate-800 mb-4">
-              {services[selectedService].title} Details
-            </h3>
-            <ul className="space-y-2">
-              {services[selectedService].specifics.map((specific, idx) => (
-                <li key={idx} className="flex items-center text-sm text-slate-700">
-                  <span className="w-1.5 h-1.5 bg-secondary rounded-full mr-2" />
-                  {specific}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
     </section>
   );
