@@ -73,3 +73,8 @@
 .glass-card {
   @apply bg-white/80 backdrop-blur-sm border border-white/40 rounded-lg;
 }
+
+/* Custom background gradient for pages */
+.bg-main-gradient {
+  background: linear-gradient(to bottom, #353a5f, #9ebaf3);
+}
