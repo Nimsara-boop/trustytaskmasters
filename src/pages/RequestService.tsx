@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calendar, Clock, MapPin, Wrench, CheckCircle } from "lucide-react";
+import { Calendar, Clock, MapPin, Wrench, CheckCircle, Zap, Smartphone, Home, Thermometer } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const RequestService = () => {

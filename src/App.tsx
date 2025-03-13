@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,6 +14,7 @@ import HowItWorks from "./pages/HowItWorks";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ServiceTasks from "./pages/ServiceTasks";
+import WorkerAssignment from "./pages/WorkerAssignment";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +34,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/service-tasks" element={<ServiceTasks />} />
+          <Route path="/worker-assignment" element={<WorkerAssignment />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

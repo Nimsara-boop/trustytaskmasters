@@ -35,9 +35,9 @@ const ServiceTasks = () => {
   const IconComponent = getIconComponent(service.iconName);
 
   const handleRequestService = () => {
-    // Pass the selected task or the custom "other" task to the request page
+    // Pass the selected task or the custom "other" task to the worker assignment page
     const taskToRequest = selectedTask === "other" ? otherTask : selectedTask;
-    navigate('/request', { 
+    navigate('/worker-assignment', { 
       state: { 
         service, 
         selectedTask: taskToRequest 
