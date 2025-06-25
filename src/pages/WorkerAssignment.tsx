@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import WaitingForWorker from "@/components/WaitingForWorker";
 import WorkerProfile from "@/components/WorkerProfile";
 import WorkerTracker from "@/components/WorkerTracker";
+import PreReceipt from "@/components/PreReceipt";
 import { useToast } from "@/hooks/use-toast";
 
 const WorkerAssignment = () => {
@@ -13,7 +14,7 @@ const WorkerAssignment = () => {
   const { toast } = useToast();
   const { service, selectedTask } = location.state || {};
   
-  const [status, setStatus] = useState<"waiting" | "worker_found" | "accepted">("waiting");
+  const [status, setStatus] = useState<"waiting" | "worker_found" | "accepted" | "qr_scanned">("waiting");
   const [worker, setWorker] = useState<any>(null);
   
   useEffect(() => {
@@ -72,6 +73,28 @@ const WorkerAssignment = () => {
       variant: "default",
     });
   };
+
+  const handleQRScanned = () => {
+    setStatus("qr_scanned");
+    toast({
+      title: "QR Code Scanned!",
+      description: "Review the work details and estimate below.",
+    });
+  };
+
+  const handleApproveWork = () => {
+    toast({
+      title: "Work Approved!",
+      description: "Your worker will begin the job now.",
+    });
+  };
+
+  const handleRequestChanges = () => {
+    toast({
+      title: "Changes Requested",
+      description: "Your worker will discuss the modifications needed.",
+    });
+  };
   
   return (
     <div className="min-h-screen relative">
@@ -113,7 +136,25 @@ const WorkerAssignment = () => {
               <h2 className="text-2xl font-semibold text-white text-center mb-6">
                 Your service is confirmed!
               </h2>
-              <WorkerTracker worker={worker} />
+              <WorkerTracker 
+                worker={worker} 
+                onQRScanned={handleQRScanned}
+              />
+            </div>
+          )}
+
+          {status === "qr_scanned" && worker && service && selectedTask && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-semibold text-white text-center mb-6">
+                Work Details & Estimate
+              </h2>
+              <PreReceipt 
+                worker={worker}
+                service={service}
+                task={selectedTask}
+                onApprove={handleApproveWork}
+                onReject={handleRequestChanges}
+              />
             </div>
           )}
         </div>
