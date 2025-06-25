@@ -12,7 +12,7 @@ interface WorkerTrackerProps {
 
 const WorkerTracker = ({ worker, onQRScanned }: WorkerTrackerProps) => {
   const [currentLocation, setCurrentLocation] = useState(worker.location);
-  const [timeRemaining, setTimeRemaining] = useState(25); // starting with 25 mins
+  const [timeRemaining, setTimeRemaining] = useState(3); // reduced to 3 seconds
   const [showQRScanner, setShowQRScanner] = useState(false);
   
   // Simulate the worker approaching
@@ -32,9 +32,9 @@ const WorkerTracker = ({ worker, onQRScanned }: WorkerTrackerProps) => {
       // Simulate movement
       setCurrentLocation(prev => ({
         ...prev,
-        estimatedArrival: `${timeRemaining - 1} minutes`
+        estimatedArrival: `${timeRemaining - 1} seconds`
       }));
-    }, 60000); // Update every minute
+    }, 1000); // Update every second for faster countdown
     
     return () => clearInterval(interval);
   }, [timeRemaining]);
@@ -65,7 +65,7 @@ const WorkerTracker = ({ worker, onQRScanned }: WorkerTrackerProps) => {
               <div className="flex items-center text-slate-600">
                 <Clock className="w-4 h-4 mr-1" />
                 <span>
-                  {timeRemaining > 0 ? currentLocation.estimatedArrival : "Arrived"}
+                  {timeRemaining > 0 ? `${timeRemaining} seconds` : "Arrived"}
                 </span>
               </div>
             </div>
@@ -86,7 +86,7 @@ const WorkerTracker = ({ worker, onQRScanned }: WorkerTrackerProps) => {
                 {timeRemaining > 0 ? "Estimated arrival" : "Status"}
               </p>
               <p className="text-slate-600">
-                {timeRemaining > 0 ? currentLocation.estimatedArrival : "Worker has arrived"}
+                {timeRemaining > 0 ? `${timeRemaining} seconds` : "Worker has arrived"}
               </p>
             </div>
             <Button variant="outline" size="sm">
